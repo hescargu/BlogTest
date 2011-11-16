@@ -13,6 +13,14 @@ describe "PostListings" do
 	response.body.should include(@post1.title)
 	response.body.should include(@post2.title)
     end
-
+    it "link should exist" do
+	visit posts_path
+	page.should have_link('New Post', :href => new_post_path)
+    end
+    it "nav links should take to the right pages" do
+	visit posts_path
+        page.click_link("New Post")
+        current_path.should eq new_post_path
+    end
   end
 end
