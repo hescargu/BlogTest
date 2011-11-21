@@ -19,4 +19,9 @@ class PostsController < ApplicationController
    	@post = Post.create(params[:post])
 	redirect_to posts_path, notice: 'Post was successfully created.'
   end
+  def destroy
+	@post = Post.find(params[:id])
+	@post.destroy
+	redirect_to posts_path, notice: 'Post was successfully deleted.'
+  end
 end
