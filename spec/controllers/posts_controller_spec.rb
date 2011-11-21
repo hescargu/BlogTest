@@ -69,4 +69,20 @@ describe PostsController do
 			assigns(:post).should eq @post
 		end
 	end
+	describe "create" do
+		before(:each) do
+			@post_params = {"post" => {"title" => "post_title", "body" => "post_body"}}
+			#stub_model(Post, :title => "sujet", :body => "rfhgpqrvb")
+			@post2 = stub_model(Post,:title => "sujet2", :body => "rfhergzb")
+			@posts = [@post2]
+			#change le résultat de Post.new
+			Post.stub(:create) { @post } #renvoi @post à la place du vrai résultat du Post.new
+		end
+		it "create doit retourner un post" do
+			Post.should_receive(:create).with(@post_params["post"]).and_return(@post)			
+			post :create, @post_params
+			response.should redirect_to(posts_path)
+		end
+	end
+
 end
