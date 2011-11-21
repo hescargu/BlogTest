@@ -12,6 +12,23 @@ BlogTest::Application.routes.draw do
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   resources :posts
+  #match 'GET /posts/:id/edit' => 'posts#edit', :as => "edit_post"
+  #match '/posts' => 'posts#index', :as => "posts", :method => :get
+  #match '/posts/:id' => 'posts#show', :as => "post",  :method => :get 
+  #match '/posts/new' => 'posts#new', :as => "new_post", :method => :get 
+  #match '/posts' => 'posts#create', :method => :post 
+  #match '/posts/:id' => 'posts#update', :method => :put 
+  #match '/posts/:id' => 'posts#destroy',  :method => :delete 
+  
+
+#    posts GET    /posts(.:format)          {:action=>"index", :controller=>"posts"}
+#          POST   /posts(.:format)          {:action=>"create", :controller=>"posts"}
+# new_post GET    /posts/new(.:format)      {:action=>"new", :controller=>"posts"}
+#edit_post GET    /posts/:id/edit(.:format) {:action=>"edit", :controller=>"posts"}
+#     post GET    /posts/:id(.:format)      {:action=>"show", :controller=>"posts"}
+#          PUT    /posts/:id(.:format)      {:action=>"update", :controller=>"posts"}
+#          DELETE /posts/:id(.:format)      {:action=>"destroy", :controller=>"posts"}
+
 
   # Sample resource route with options:
   #   resources :products do

@@ -1,15 +1,15 @@
 require 'spec_helper'
 
-describe "posts/edit.html.erb" do
+describe "posts/new.html.erb" do
 	before (:each) do
 		#prérequis : @posts contient des objets ressemblant à un post
 		@post = stub_model(Post, :title => "sujet", :body => "cacahuete") 
 		assign(:posts, [@post])
 	end
-	it "should display the post" do
+	it "devrait afficher le formulaire" do
 		#on calcule le template
 		render
-		rendered.should have_selector("form", :method => "put", :action => "/posts/#{@post.id}") do |form|
+		rendered.should have_selector("form", :method => "post", :action => "/posts") do |form|
 			form.should have_selector("div", :class => "field")
 			form.should have_selector("label", :name => "title")
 			form.should have_selector("text_field", :name => "title")
@@ -18,13 +18,10 @@ describe "posts/edit.html.erb" do
 			form.should have_selector("submit")
 		end
 	end
-	    it "Show link should exist" do
-		render
-		rendered.should have_link('Show', :href => post_path(@post.id))
-	    end
-	    it "Back link should exist" do
-		render
-		rendered.should have_link('Back', :href => posts_path)
-	    end
+
+    it "link should exist" do
+	render
+	rendered.should have_link('Back', :href => posts_path)
+    end
 
 end
