@@ -59,7 +59,7 @@ describe PostsController do
 			@post2 = stub_model(Post,:title => "sujet2", :body => "rfhergzb")
 			@posts = [@post2]
 			#change le résultat de Post.new
-			Post.stub(:new) { @post } #renvoi @post à la place du vrai résultat du Post.find
+			Post.stub(:new) { @post }
 		end
 		it "New doit retourner un post" do
 			Post.should_receive(:new).and_return(@post)
@@ -71,12 +71,10 @@ describe PostsController do
 	end
 	describe "create" do
 		before(:each) do
-			@post_params = {"post" => {"title" => "post_title", "body" => "post_body"}}
-			#stub_model(Post, :title => "sujet", :body => "rfhgpqrvb")
 			@post2 = stub_model(Post,:title => "sujet2", :body => "rfhergzb")
+			@post_params = {"post" => { "title" => "post_title", "body" => "post_body"}}
 			@posts = [@post2]
-			#change le résultat de Post.new
-			Post.stub(:create) { @post } #renvoi @post à la place du vrai résultat du Post.new
+			Post.stub(:create) { @post }
 		end
 		it "create doit retourner un post" do
 			Post.should_receive(:create).with(@post_params["post"]).and_return(@post)			
@@ -84,6 +82,26 @@ describe PostsController do
 			response.should redirect_to(posts_path)
 		end
 	end
+
+
+	describe "update" do
+		before(:each) do
+			@post = stub_model(Post,:title => "sujet2", :body => "rfhergzb")
+			@posts = [@post]
+			title = "edit title"
+			body = "edit body"
+			@post_params = {"post" => {"title" => title, "body" => body}}
+			Post.stub(:update){ true }
+			Post.stub(:find){ @post }
+		end
+		it "should update the post with the given params" do 
+			Post.should_receive(:find).and_return(@post)
+			@post.should_receive(:update_attributes).with({:post => @post_params["post"]})
+			put :update, {:id => @post.id, :post => @post_params["post"]}
+			response.should redirect_to(posts_path)
+		end
+  end
+
 
 	describe "destroy" do
 	    before(:each) do
