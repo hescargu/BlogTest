@@ -3,8 +3,7 @@
 <ul> 
 
 	<% @posts.each do |post| %>
-	    <li><%= post.title %>
-	    <li><%= post.body %>
+	    <li id='post_<%= post.id %>'><%= post.title %><%= link_to "Delete this Post", post, :method => 'delete'%></li>
 	<% end %>
 </ul>
 
