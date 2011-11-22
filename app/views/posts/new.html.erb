@@ -1,15 +1,5 @@
 <h1>New post</h1>
-<!----------------------
-<%= render 'form' %>
 
-<%= link_to 'Back', posts_path %>
-------------------------------->
-<%= form_tag(posts_path, :method => "post", :id => 'new_post' ) do %>
-  <%= label_tag(:post_title, 'Title') %>
-  <%= text_field_tag('post[title]') %>
-  <%= label_tag(:post_body, 'Body') %>
-  <%= text_field_tag('post[body]') %>
-  <%= submit_tag("Create Post") %>
-<% end %>
+<%= render 'form' %>
 
 <%= link_to 'Back', posts_path %>
