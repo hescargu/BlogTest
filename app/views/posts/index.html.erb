@@ -1,10 +1,24 @@
 <h1>Listing posts</h1>
 
-<ul> 
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Body</th>
+		<th></th>
+    <th></th>
+    <th></th>
+  </tr>
 
 	<% @posts.each do |post| %>
-	    <li id='post_<%= post.id %>'><%= post.title %><%= link_to "Delete this Post", post, :method => 'delete'%></li>
+	<tr>
+		<td> <%= post.title %></td>
+		<td><%= post.body%></td>
+		<td><%= link_to "Show Post", post_path(post.id)%></td>
+		<td><%= link_to "Edit Post", edit_post_path(post.id)%></td>
+		<td><%= link_to "Delete Post", post, :method => 'delete'%></td>
+	</tr>
 	<% end %>
-</ul>
+	</table>
+	<br />
 
 <%= link_to 'New Post', new_post_path %>

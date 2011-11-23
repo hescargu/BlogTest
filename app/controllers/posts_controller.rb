@@ -26,7 +26,7 @@ class PostsController < ApplicationController
   end
   def update
 	@post = Post.find(params[:id])
-	@post.update_attributes(:post => params[:post])
+	@post.update_attributes(params[:post])
 	redirect_to posts_path, notice: 'Post was successfully updated.'
   end
 end

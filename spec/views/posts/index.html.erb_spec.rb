@@ -11,13 +11,13 @@ describe "posts/index.html.erb" do
 		#on calcule le template
 		render
 		#je veux <ul><li> Titre post</li><li> Titre post2 </li></ul>
-		rendered.should have_selector("ul li")
+		rendered.should have_selector("table td")
 		rendered.should have_content("#{@post1.title}")
 		rendered.should have_content("#{@post2.title}")
 	end
-    it "link should exist" do
-	render
-	rendered.should have_link('New Post', :href => new_post_path)
-    end
+	it "link should exist" do
+		render	
+		rendered.should have_link('New Post', :href => new_post_path)
+	end
 
 end

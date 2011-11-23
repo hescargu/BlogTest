@@ -90,17 +90,17 @@ describe PostsController do
 			@posts = [@post]
 			title = "edit title"
 			body = "edit body"
-			@post_params = {"post" => {"title" => title, "body" => body}}
-			Post.stub(:update){ true }
+			@new_post = {"title" => title, "body" => body}
+			Post.stub(:update_attributes){ true }
 			Post.stub(:find){ @post }
 		end
 		it "should update the post with the given params" do 
 			Post.should_receive(:find).and_return(@post)
-			@post.should_receive(:update_attributes).with({:post => @post_params["post"]})
-			put :update, {:id => @post.id, :post => @post_params["post"]}
+			@post.should_receive(:update_attributes).with(@new_post)
+			put :update, {:id => @post.id, :post => @new_post}
 			response.should redirect_to(posts_path)
 		end
-  end
+  	end
 
 
 	describe "destroy" do

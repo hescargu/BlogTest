@@ -26,6 +26,7 @@ describe "CreatePosts" do
     before(:each) do
       visit new_post_path
       fill_in("Title", :with => "post 1")
+      fill_in("Body", :with => "created body")
       click_button("Create Post")
     end
     it "should display the todo list" do
@@ -40,12 +41,14 @@ describe "CreatePosts" do
       click_link("New Post")
       current_path.should == new_post_path
       fill_in("Title", :with => "post 1")
+      fill_in("Body", :with => "created body")
       click_button("Create Post")
       current_path.should == posts_path
     end
 
-    it "should display the new task in the list" do
+    it "should display the new post in the list" do
       page.should have_content("post 1")
+      page.should have_content("created body")
     end
   end
       

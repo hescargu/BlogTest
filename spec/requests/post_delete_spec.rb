@@ -12,16 +12,16 @@ describe "DeletePosts" do
   describe "a post in the list" do
     it "should have a delete button" do
       visit posts_path
-      @posts.each{|post| page.should have_link("Delete this Post", :href => post_path(post), :method => 'delete')}
+      @posts.each{|post| page.should have_link("Delete Post", :href => post_path(post), :method => 'delete')}
     end
   end
 
   describe "after a click on the delete link on the 2nd post" do
     it "should display the list without the post2" do
-      	within("li", :text => @post.title) do
-        click_on "Delete this Post"
-      end
-      page.should_not have_content(@post.title)
+      	within("tr", :text => @post.title) do
+        	click_link("Delete Post")
+        end
+        page.should_not have_content(@post.title)
     end
   end
 end
