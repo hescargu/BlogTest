@@ -19,7 +19,8 @@ describe "DeletePosts" do
   describe "after a click on the delete link on the 2nd post" do
     it "should display the list without the post2" do
       	within("tr", :text => @post.title) do
-        	click_link("Delete Post")
+       		click_link("Delete Post")
+		current_path.should == posts_path
         end
         page.should_not have_content(@post.title)
     end

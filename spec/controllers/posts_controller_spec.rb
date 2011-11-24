@@ -16,13 +16,6 @@ describe PostsController do
 			assigns(:posts).should eq @posts
 		end
 	end
-#	describe "new" do
-#		before(:each) do
-#			@post = stub_model(Post)
-#			#change le résultat 
-#			Post.stub(:new) { @post } #renvoi @post à la place du vrai résultat du Post.all
-#		end	
-#	end
 	describe "show" do
 		before(:each) do
 			@post = stub_model(Post,:title => "sujet", :body => "rfhgpqrvb")

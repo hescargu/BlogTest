@@ -12,7 +12,7 @@ BlogTest::Application.routes.draw do
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   resources :posts
-  #match 'GET /posts/:id/edit' => 'posts#edit', :as => "edit_post"
+  resources :comments
   #match '/posts' => 'posts#index', :as => "posts", :method => :get
   #match '/posts/:id' => 'posts#show', :as => "post",  :method => :get 
   #match '/posts/new' => 'posts#new', :as => "new_post", :method => :get 
