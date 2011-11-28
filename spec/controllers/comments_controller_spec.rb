@@ -7,28 +7,22 @@ describe CommentsController do
 				  stub_model(Post,:title => "sujet3", :body => "rfhevfevfrgzb"), 
 				  stub_model(Post,:title => "sujet4", :body => "rregagfhergzb")]
 			@post = @posts[0]
-			@new_comment = {"author" => "new auteur", "body" => "new commentaire"}
+			#@post_params = {"post" => { "title" => "post_title", "body" => "post_body"}}
+			@new_comment = {"comment" => {"author" => "new auteur", "body" => "new commentaire"}, "post_id" => @post.id}
 			@comments = [stub_model(Comment, :author => "auteur", :body => "commentaire", :post_id => @post.id)]
+			@post.comments = @comments
 			Post.stub(:find) { @post }
 			Post.stub(:comments) { true }
 			Comment.stub(:create) { @commentcreated }
 			visit post_path(@post)
 		end
 		it "create doit retourner un comment" do
-			Post.should_receive(:find).and_return(@post)
+			Post.should_receive(:find).with(@new_comment["post_id"].to_s).and_return(@post)
 			@post.should_receive(:comments).and_return(@comments)
 			@comments.should_receive(:create).with(@new_comment["comment"]).and_return(@commentcreated)
-			post :create,  @new_comment
+			post :create, @new_comment
 			response.should redirect_to(post_path(@post))
 		end
-	end
-
-	def destroy
-		puts params
-		@post = Post.find(params[:post_id])
-		@comment = @post.comments.find(params[:id])
-		@comment.destroy
-		redirect_to post_path(@post), notice: 'Comment was successfully created.'
 	end
 
 	describe "destroy" do
@@ -39,7 +33,6 @@ describe CommentsController do
 			@post = @posts[0]
 			@comment = stub_model(Comment, :author => "auteur", :body => "commentaire", :post_id => @post.id)
 			@comments = [@comment]
-			#@params = {"id" => @comment.id, "post_id" => @post.id}
 			Post.stub(:find) { @post }
 			Post.stub(:comments) { true }
 			Comment.stub(:find) { @comment }

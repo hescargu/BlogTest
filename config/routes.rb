@@ -11,8 +11,9 @@ BlogTest::Application.routes.draw do
   # This route can be invoked with purchase_url(:id => product.id)
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
-  resources :posts
-  resources :comments
+  resources :posts do
+  	resources :comments 
+  end
   #match '/posts' => 'posts#index', :as => "posts", :method => :get
   #match '/posts/:id' => 'posts#show', :as => "post",  :method => :get 
   #match '/posts/new' => 'posts#new', :as => "new_post", :method => :get 

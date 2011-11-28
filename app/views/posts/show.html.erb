@@ -8,6 +8,28 @@
   <b>Body:</b>
   <%= @post.body %>
 </p>
+<br />
+
+
+<p>
+<b>Comments on the post</b>
+<table>
+  <tr>
+    <th>Author</th>
+    <th>Body</th>
+		<th></th>
+    <th></th>
+    <th></th>
+  </tr>
+<%= render 'commentlist' %>
+</table>
+<br />
+</p>
+
+<p>
+<b>New comment</b>
+<%= render 'commentform' %>
+</p>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>  
