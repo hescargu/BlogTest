@@ -7,8 +7,8 @@ describe CommentsController do
 				  stub_model(Post,:title => "sujet3", :body => "rfhevfevfrgzb"), 
 				  stub_model(Post,:title => "sujet4", :body => "rregagfhergzb")]
 			@post = @posts[0]
-			#@post_params = {"post" => { "title" => "post_title", "body" => "post_body"}}
-			@new_comment = {"comment" => {"author" => "new auteur", "body" => "new commentaire"}, "post_id" => @post.id}
+			@new_comment1 = {"author" => "new auteur", "body" => "new commentaire", "post_id" => @post.id}
+			@new_comment2 = {"comment" => {"author" => "new auteur", "body" => "new commentaire"}}
 			@comments = [stub_model(Comment, :author => "auteur", :body => "commentaire", :post_id => @post.id)]
 			@post.comments = @comments
 			Post.stub(:find) { @post }
@@ -17,10 +17,12 @@ describe CommentsController do
 			visit post_path(@post)
 		end
 		it "create doit retourner un comment" do
-			Post.should_receive(:find).with(@new_comment["post_id"].to_s).and_return(@post)
+			Post.should_receive(:find).with(@new_comment1["post_id"].to_s).and_return(@post)
 			@post.should_receive(:comments).and_return(@comments)
-			@comments.should_receive(:create).with(@new_comment["comment"]).and_return(@commentcreated)
-			post :create, @new_comment
+			@comments.should_receive(:create).with(@new_comment2["comment"]).and_return(@commentcreated)
+			puts "post_id controller_spec"
+			puts @new_comment1["post_id"]
+			post :create, @new_comment1
 			response.should redirect_to(post_path(@post))
 		end
 	end
@@ -44,7 +46,6 @@ describe CommentsController do
 			@post.should_receive(:comments).and_return(@comments)
 			@comments.should_receive(:find).with(@comment.id.to_s).and_return(@comment)
 			@comment.should_receive(:destroy)
-			puts :post_id => @post.id, :id => @comment.id.to_i
 			delete :destroy, :post_id => @post.id, :id => @comment.id
 			response.should redirect_to(post_path(@post))
 		end
