@@ -3,12 +3,15 @@
 <head>
   <title>BlogTest</title>
   <%= stylesheet_link_tag    "application" %>
+  <%= stylesheet_link_tag    "main" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<div class="border">
+<div class="content-navigation">
 <%= yield %>
-
+</div>
+</div>
 </body>
 </html>
