@@ -17,10 +17,17 @@ describe "PostListings" do
 	visit posts_path
 	page.should have_link('New Post', :href => new_post_path)
     end
-    it "nav links should take to the right pages" do
+    it "form should appear by clicking on the link " do
 	visit posts_path
         page.click_link("New Post")
-        current_path.should eq new_post_path
-    end
+	page.should have_selector("form", :method => "post", :action => "/posts") do |form|
+		form.should have_selector("div", :class => "field")
+		form.should have_selector("label", :name => "title")
+		form.should have_selector("text_field", :name => "title")
+		form.should have_selector("label", :name => "body")
+		form.should have_selector("text_area", :name => "body")
+		form.should have_selector("submit")
+	end
+end
   end
 end

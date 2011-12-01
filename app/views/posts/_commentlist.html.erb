@@ -1,7 +1,7 @@
 <% @post.comments.each do |comment| %>
 <tr>
-	<td> <%= comment.author %> &nbsp;</td>
-	<td><%= comment.body%> &nbsp;</td>
-	<td><%= link_to "Delete Comment", "/posts/#{@post.id}/comments/#{comment.id}", :method => :delete%> &nbsp;</td>
+	<td> <%= comment.author %> &nbsp;&nbsp;</td>
+	<td><%= comment.body%> &nbsp;&nbsp;</td>
+	<td><%= link_to "Delete Comment", "/posts/#{@post.id}/comments/#{comment.id}", :method => :delete%> &nbsp;&nbsp;</td>
 </tr>
 <% end %>

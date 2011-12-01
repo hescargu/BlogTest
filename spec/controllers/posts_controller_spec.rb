@@ -68,9 +68,11 @@ describe PostsController do
 			@post_params = {"post" => { "title" => "post_title", "body" => "post_body"}}
 			@posts = [@post2]
 			Post.stub(:create) { @post }
+			Post.stub(:save) {true}
 		end
 		it "create doit retourner un post" do
-			Post.should_receive(:create).with(@post_params["post"]).and_return(@post)			
+			Post.should_receive(:create).with(@post_params["post"]).and_return(@post)	
+			@post.should_receive(:save).and_return("true")		
 			post :create, @post_params
 			response.should redirect_to(posts_path)
 		end
@@ -83,13 +85,13 @@ describe PostsController do
 			@posts = [@post]
 			title = "edit title"
 			body = "edit body"
-			@new_post = {"title" => title, "body" => body}
-			Post.stub(:update_attributes){ true }
+			@new_post = {"title" => title, "body" => body}	
+			Post.stub(:update_attributes){ true }		
 			Post.stub(:find){ @post }
 		end
 		it "should update the post with the given params" do 
 			Post.should_receive(:find).and_return(@post)
-			@post.should_receive(:update_attributes).with(@new_post)
+			@post.should_receive(:update_attributes).with(@new_post).and_return("true")
 			put :update, {:id => @post.id, :post => @new_post}
 			response.should redirect_to(posts_path)
 		end

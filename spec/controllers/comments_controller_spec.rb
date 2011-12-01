@@ -1,6 +1,26 @@
 require 'spec_helper'
 
 describe CommentsController do
+	describe "new" do
+		before(:each) do
+			@post = stub_model(Post,:title => "sujet", :body => "rfhgpqrvb")
+			@comment = stub_model(Comment, :author => "auteur", :body => "commentaire", :post_id => @post.id)
+			@comments = [stub_model(Comment, :author => "auteur", :body => "commentaire", :post_id => @post.id)]
+			@posts = [@post]
+			#change le résultat de Post.new
+			Post.stub(:find) { @post }
+			Post.stub(:comments) { true }
+			Comment.stub(:new) { @comment }
+		end
+		it "New doit retourner un post" do
+			Post.should_receive(:find).and_return(@post)
+			@post.should_receive(:comments).and_return(@comments)
+			@comments.should_receive(:new).and_return(@comment)
+			get :new, :post_id => @post.id
+			assigns(:comment).should eq @comment
+		end
+	end
+
 	describe "create" do
 		before(:each) do
 			@posts = [stub_model(Post,:title => "sujet1", :body => "rfhergzb"), 

@@ -15,7 +15,19 @@ describe "posts/index.html.erb" do
 		rendered.should have_content("#{@post1.title}")
 		rendered.should have_content("#{@post2.title}")
 	end
-	it "link should exist" do
+	it "delete post link should exist" do
+		render	
+		rendered.should have_link('Delete Post')
+	end
+	it "edit post link should exist" do
+		render	
+		rendered.should have_link('Edit Post')
+	end
+	it "show post link should exist" do
+		render	
+		rendered.should have_link('Show Post')
+	end
+	it "New post link should exist" do
 		render	
 		rendered.should have_link('New Post', :href => new_post_path)
 	end

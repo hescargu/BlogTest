@@ -8,8 +8,13 @@ describe "CreateComments" do
       @comments = [@comment]
     end
   describe "GET /posts/:id_post" do
-    it "displays a form to create a new comment" do
+    it "displays a link to create a new comment" do
       visit post_path(@post)
+      page.should have_link("Add a comment")
+    end
+    it "displays a form to create new comment when clicking on the link" do
+      visit post_path(@post)
+      click_link("Add a comment")
       page.should have_selector("form")
       page.should have_field("Author")
       page.should have_field("Body")
@@ -20,6 +25,7 @@ describe "CreateComments" do
   describe "use new comment form" do
     it "should display the todo list" do
       visit post_path(@post)
+      click_link("Add a comment")
       fill_in("Author", :with => "auteur")
       fill_in("Body", :with => "commentaire")
       click_button("Create Comment")
@@ -35,6 +41,7 @@ describe "CreateComments" do
          click_link("Show Post")
       end
       current_path.should == post_path(@post.id)
+      click_link("Add a comment")
       fill_in("Author", :with => "auteur")
       fill_in("Body", :with => "commentaire")
       click_button("Create Comment")

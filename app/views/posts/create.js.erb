@@ -1,0 +1,8 @@
+$("body table tbody").append("<tr><td><%= escape_javascript(@post.title)%></td><td><%= escape_javascript(@post.body)%></td><td><%= escape_javascript(link_to 'Show Post', post_path(@post), :remote => true) %></td><td><%= escape_javascript(link_to 'Edit Post', edit_post_path(@post), :remote => true) %></td><td><%= escape_javascript(link_to "Delete Post", @post, :method => 'delete') %></td></tr>");
+$("form#new_post").remove();
+$("a[href='<%= new_post_path %>']").fadeIn();
+
+//append : ajout du contenu -> nom de la tache, lien vers show, edit et destroy
+//surppression formulaire nouvelle tache
+//ajout lien nouvelle tache
+

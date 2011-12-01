@@ -1,0 +1,6 @@
+$("body table tbody").append("<tr><td><%= escape_javascript(@comment.author)%></td><td><%= escape_javascript(@comment.body)%></td><td><%= escape_javascript(link_to 'Delete Comment', "/posts/#{@post.id}/comments/#{@comment}", confirm: 'Are you sure?', :remote => true, method: :delete) %></td></tr>");
+$("form#new_post_comment").remove();
+$("a[href='<%= new_post_comment_path(@post.id) %>']").fadeIn();
+
+
+

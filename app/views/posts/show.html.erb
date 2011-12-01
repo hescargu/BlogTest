@@ -1,4 +1,6 @@
 <h1>Post details</h1>
+
+<div class="affichagepost">
 <p>
   <b>Title: &nbsp;</b>
   <%= @post.title %>
@@ -10,10 +12,13 @@
 </p>
 <br />
 
+</div>
+
 <HR width=70% align=left>
 
 <p>
 <h3>Comments on the post</h3>
+<div class="affichagecomment">
 <table>
   <tr>
     <th>Author &nbsp;</th>
@@ -22,17 +27,16 @@
     <th></th>
     <th></th>
   </tr>
-<%= render 'commentlist' %>
+	<%= render 'commentlist' %>
 </table>
 <br />
 </p>
-
+</div>
 <HR width=70% align=left>
 
 <p>
 <h3>New comment</h3>
-<%= render 'commentform' %>
-<br />
+<%= link_to 'Add a comment', new_post_comment_path(@post), :remote => true %>
 </p>
 
 <HR width=70% align=left>
