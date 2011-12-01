@@ -13,11 +13,17 @@ describe "PostListings" do
 	response.body.should include(@post1.title)
 	response.body.should include(@post2.title)
     end
-    it "link should exist" do
+    it "show, edit and delete comment link should exist" do
+	visit posts_path
+	page.should have_link('Show Post')
+	page.should have_link('Edit Post')
+	page.should have_link('Delete Post')
+    end
+    it "new post link should exist" do
 	visit posts_path
 	page.should have_link('New Post', :href => new_post_path)
     end
-    it "form should appear by clicking on the link " do
+    it "form should appear by clicking on the new post link " do
 	visit posts_path
         page.click_link("New Post")
 	page.should have_selector("form", :method => "post", :action => "/posts") do |form|

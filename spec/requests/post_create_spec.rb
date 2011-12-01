@@ -22,7 +22,7 @@ describe "CreatePosts" do
     end
   end
 
-  describe "use new post form" do
+  describe "use new post form on new post page" do
     before(:each) do
       visit new_post_path
       fill_in("Title", :with => "post 1")
@@ -35,7 +35,7 @@ describe "CreatePosts" do
     
   end
 
-  describe "after a new post has been created" do
+  describe "use new post form on the main page" do
     before(:each) do
       visit posts_path
       click_link("New Post")

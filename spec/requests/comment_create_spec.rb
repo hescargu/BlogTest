@@ -15,10 +15,14 @@ describe "CreateComments" do
     it "displays a form to create new comment when clicking on the link" do
       visit post_path(@post)
       click_link("Add a comment")
-      page.should have_selector("form")
-      page.should have_field("Author")
-      page.should have_field("Body")
-      page.should have_button("Create Comment")
+      page.should have_selector("form", :method => "post", :action => "/posts/#{@post.id}/comments") do |form|
+		form.should have_selector("div", :class => "field")
+		form.should have_selector("label", :name => "author")
+		form.should have_selector("text_field", :name => "author")
+		form.should have_selector("label", :name => "body")
+		form.should have_selector("text_area", :name => "body")
+		form.should have_selector("submit")
+      end
     end
   end
 
