@@ -14,6 +14,10 @@ BlogTest::Application.routes.draw do
   resources :posts do
   	resources :comments 
   end
+  resources :users 
+  resources :sessions
+
+#member do get 'create' end
   #match '/posts' => 'posts#index', :as => "posts", :method => :get
   #match '/posts/:id' => 'posts#show', :as => "post",  :method => :get 
   #match '/posts/new' => 'posts#new', :as => "new_post", :method => :get 

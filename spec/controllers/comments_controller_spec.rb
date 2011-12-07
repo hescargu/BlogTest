@@ -7,7 +7,6 @@ describe CommentsController do
 			@comment = stub_model(Comment, :author => "auteur", :body => "commentaire", :post_id => @post.id)
 			@comments = [stub_model(Comment, :author => "auteur", :body => "commentaire", :post_id => @post.id)]
 			@posts = [@post]
-			#change le résultat de Post.new
 			Post.stub(:find) { @post }
 			Post.stub(:comments) { true }
 			Comment.stub(:new) { @comment }
@@ -40,8 +39,6 @@ describe CommentsController do
 			Post.should_receive(:find).with(@new_comment1["post_id"].to_s).and_return(@post)
 			@post.should_receive(:comments).and_return(@comments)
 			@comments.should_receive(:create).with(@new_comment2["comment"]).and_return(@commentcreated)
-			puts "post_id controller_spec"
-			puts @new_comment1["post_id"]
 			post :create, @new_comment1
 			response.should redirect_to(post_path(@post))
 		end

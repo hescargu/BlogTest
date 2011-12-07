@@ -8,11 +8,7 @@ class CommentsController < ApplicationController
 		end
 	end
 	def create
-		puts "parametre post id"
-		puts params[:post_id]
 		@post = Post.find(params[:post_id])
-		puts "parametres controller"
-		puts params[:comment]
 		@comment = @post.comments.create("author" => params[:author], "body" => params[:body])
 		respond_to do |format|
 			format.html { redirect_to post_path(@post), notice: 'Comment was successfully created.' }
