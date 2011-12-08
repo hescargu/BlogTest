@@ -41,6 +41,10 @@ describe "posts/index.html.erb" do
 			render	
 			rendered.should have_link('Log out')
 		end
+		it "delete account link should exist" do
+			render	
+			rendered.should have_link('Delete your account')
+		end
 	end
 
 	describe "posts/index.html.erb sans authentification" do
@@ -62,6 +66,10 @@ describe "posts/index.html.erb" do
 		it "Log in link should exist" do
 			render	
 			rendered.should have_link('Log in', :href => new_session_path)
+		end	
+		it "Create account link should exist" do
+			render	
+			rendered.should have_link('Create an account', :href => new_user_path)
 		end		
 	end
 

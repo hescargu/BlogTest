@@ -31,7 +31,30 @@ describe UsersController do
 			User.should_receive(:create).with(@user_params["user"]).and_return(@user)	
 			@user.should_receive(:save).and_return("true")		
 			post :create, @user_params
-			response.should redirect_to(new_session_path)
+			response.should redirect_to(posts_path)
 		end
+	end
+
+	describe "destroy" do
+	    before(:each) do
+	      @user = stub_model(User, :email => "someone@something.com", :password => "rfhergzb", :password_confirmation =>  "rfhergzb")
+	      @user.stub(:destroy){ true }
+	      User.stub(:find){ @user }
+		controller.stub!(:require_user).and_return(true)
+	    end
+	    it "should redirect to the posts list" do
+	      delete :destroy, {:id => @user.id }
+	      response.should redirect_to posts_path
+	    end
+
+	    it "should search the post" do
+	      User.should_receive(:find).with(@user.id.to_s).and_return(@user)
+	      delete :destroy, {:id => @user.id }
+	    end
+
+	    it "should destroy the post" do
+	      @user.should_receive(:destroy)
+	      delete :destroy, {:id => @user.id }
+	    end
 	end
 end

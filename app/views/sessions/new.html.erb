@@ -1,5 +1,6 @@
 <h1>Log in</h1>
 
+
 <%= form_tag sessions_path do %>
   <div class="field">
     <%= label_tag :email %>
@@ -11,6 +12,11 @@
   </div>
   <div class="actions"><%= submit_tag "Log in" %></div>
 <% end %>
-
+<br />
+<div class="flash">
+<% if flash[:error] then %>
+	<%=  "* " + flash[:error] %>
+<%end%>
+</div>
 <br />
 <%= link_to 'Create an account', new_user_path %>

@@ -1,3 +1,11 @@
 // Place all the styles related to the sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$red: #FF0000;
+
+.flash {
+  border-color: $red;	
+  color: $red;
+  font-size: small;
+}
