@@ -10,6 +10,9 @@
 <body>
 <div class="border">
 <div class="content-navigation">
+<% if current_user then %> 
+<p align=right> Connected as <i><%= User.find(current_user.id).email %></i> | <%= link_to 'Log out', "/sessions/current_user", :method => 'delete'%> </p>
+<% end %>
 <%= yield %>
 </div>
 </div>

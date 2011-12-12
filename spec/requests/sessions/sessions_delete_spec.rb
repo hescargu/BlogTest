@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe "DeletePosts" do
-pending "test de creation de session quand session supprimee"
   before(:each) do
       @user = User.create(:email => "test@test.com", :password => "pwdtest", :password_confirmation => "pwdtest")
       visit new_session_path
@@ -23,7 +22,8 @@ pending "test de creation de session quand session supprimee"
 	click_link("Delete your account")
 	current_path.should == posts_path
         page.should_not have_link("Log out")
-        page.should have_link("Log in")
+        page.should have_link("Log in")    
+        page.should_not have_content("Connected as #{@user[:email]}")
     end
   end
 end

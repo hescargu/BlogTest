@@ -21,9 +21,9 @@ end
 
   describe "GET /posts/new" do
     before(:each) do
-      @posts = [Post.create(:title => "sujet1", :body => "bla "),
-              	Post.create(:title => "sujet2", :body => "bla bla"),
-      		Post.create(:title => "sujet3", :body => "bla bla bla")]
+      @posts = [Post.create(:title => "sujet1", :body => "bla ", :user_id => "1"),
+              	Post.create(:title => "sujet2", :body => "bla bla", :user_id => "1"),
+      		Post.create(:title => "sujet3", :body => "bla bla bla", :user_id => "1")]
       @post = @posts[1]
       visit edit_post_path(@post.id)
     end
@@ -46,9 +46,9 @@ end
 
   describe "use edit post form" do
     before(:each) do
-      @posts = [Post.create(:title => "sujet1", :body => "bla "),
-              	Post.create(:title => "sujet2", :body => "bla bla"),
-      		Post.create(:title => "sujet3", :body => "bla bla bla")]
+      @posts = [Post.create(:title => "sujet1", :body => "bla ", :user_id => "1"),
+              	Post.create(:title => "sujet2", :body => "bla bla", :user_id => "1"),
+      		Post.create(:title => "sujet3", :body => "bla bla bla", :user_id => "1")]
       @post = @posts[1]
       visit edit_post_path(@post.id)
       fill_in("Title", :with => "post 1")
@@ -63,9 +63,9 @@ end
 
   describe "after a post has been updated" do
     before(:each) do
-      @posts = [Post.create(:title => "sujet1", :body => "bla "),
-              	Post.create(:title => "sujet2", :body => "bla bla"),
-      		Post.create(:title => "sujet3", :body => "bla bla bla")]
+      @posts = [Post.create(:title => "sujet1", :body => "bla ", :user_id => "1"),
+              	Post.create(:title => "sujet2", :body => "bla bla", :user_id => "1"),
+      		Post.create(:title => "sujet3", :body => "bla bla bla", :user_id => "1")]
       @post = @posts[1]
       visit posts_path
       within("tr", :text => @post.title) do

@@ -1,4 +1,6 @@
+
 <h1>Listing posts</h1>
+
 
 <table>
   <tr>
@@ -10,13 +12,22 @@
   </tr>
 
   <% @posts.each do |post| %>
+
     <tr>
 	<td> <%= post.title %> &nbsp; &nbsp;</td>
 	<td><%= post.body %> &nbsp; &nbsp;</td>
 	<td><%= link_to "Show Post", post_path(post.id)%> &nbsp; &nbsp;</td>
-	<% if current_user then %>
+	<% if current_user and current_user.id == post.user_id then %>
 		<td><%= link_to "Edit Post", edit_post_path(post.id)%> &nbsp; &nbsp;</td>
-		<td><%= link_to "Delete Post", post, :method => 'delete'%> &nbsp; &nbsp;</td>
+		<td><%= link_to "Delete Post", post, :method => 'delete'%> &nbsp; &nbsp;</td> 
+	<% else %>
+		<td> </td>
+		<td> </td> 
+	<%end%>
+	<% if  (current_user == nil or current_user.id != post.user_id) then %>
+		<td><i><%= "| posted by " + User.find(post.user_id).email %> &nbsp; &nbsp;</i></td>
+	<% else %>
+		<td><i><%= "| (yours)" %> &nbsp; &nbsp;</i></td>
 	<%end%>
     </tr>
   <% end %>

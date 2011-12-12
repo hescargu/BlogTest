@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "posts/edit.html.erb" do
 	before (:each) do
 		#prérequis : @posts contient des objets ressemblant à un post
-		@post = stub_model(Post, :title => "sujet", :body => "cacahuete") 
+		@post = stub_model(Post, :title => "sujet", :body => "cacahuete", :user_id => "1") 
 		assign(:posts, [@post])
 	end
 	it "should display the post" do

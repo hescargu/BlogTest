@@ -2,10 +2,15 @@ require 'spec_helper'
 
 describe "CreateComments" do
     before(:each) do
-      @post = Post.create(:title => "sujet", :body => "cacahuete")
-      @posts = [@post]
-      @comment = Comment.create(:author => "Helene", :body => "hello", :post_id => @post.id)
-      @comments = [@comment]
+	@user = User.create(:email => "test@test.com", :password => "pwdtest", :password_confirmation => "pwdtest")
+      	@post = Post.create(:title => "sujet", :body => "cacahuete", :user_id => @user.id)
+      	@posts = [@post]
+      	@comment = Comment.create(:author => "Helene", :body => "hello", :post_id => @post.id)
+      	@comments = [@comment]
+        visit new_session_path
+        fill_in("Email", :with => @user.email)
+        fill_in("Password", :with => @user.password)
+        click_button("Log in")
     end
   describe "GET /posts/:id_post" do
     it "displays a link to create a new comment" do

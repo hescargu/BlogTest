@@ -1,10 +1,7 @@
 require 'spec_helper'
 
 describe "PostNew" do
-    before(:each) do
-	@post = Post.create(:title => "sujet", :body => "bla bla")
-	@posts = [@post]
-  end
+
   describe "GET /posts/new" do
     before(:each) do
       @user = User.create(:email => "test@test.com", :password => "pwdtest", :password_confirmation => "pwdtest")
@@ -19,6 +16,8 @@ describe "PostNew" do
       fill_in("Email", :with => @user.email)
       fill_in("Password", :with => @user.password)
       click_button("Log in")
+	@post = Post.create(:title => "sujet", :body => "bla bla", :user_id => @user.id)
+	@posts = [@post]
     end
     it "Creation" do
       visit new_post_path

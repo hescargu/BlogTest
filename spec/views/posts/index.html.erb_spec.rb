@@ -4,22 +4,25 @@ describe "posts/index.html.erb" do
 
 	before (:each) do
 		#prérequis : @posts contient des objets ressemblant à un post
-		@post1 = stub_model(Post, :title => "sujet 1") 
-		@post2 = stub_model(Post, :title => "sujet 2")
 		@user = User.create(:email => "test@test.com", :password => "pwdtest", :password_confirmation => "pwdtest")
-		view.stub!(:current_user).and_return(@user)
-		assign(:posts, [@post1,@post2])
+		@user2 = User.create(:email => "test2@test.com", :password => "pwdtest2", :password_confirmation => "pwdtest2")
+		@post1 = stub_model(Post, :title => "sujet 1", :body => "corps1", :user_id => @user.id) 
+		@post2 = stub_model(Post, :title => "sujet 2", :body => "corps2", :user_id => @user.id)
+		@post3 = stub_model(Post, :title => "sujet 3", :body => "corps3", :user_id => @user2.id)
+		assign(:posts, [@post1,@post2,@post3])
+		view.stub(:current_user).and_return(@user)
 	end
 
 	describe "posts/index.html.erb avec authentification" do
-
 		it "should display a html list" do
 			#on calcule le template
 			render
-			#je veux <ul><li> Titre post</li><li> Titre post2 </li></ul>
 			rendered.should have_selector("table td")
 			rendered.should have_content("#{@post1.title}")
+			rendered.should have_content("#{@post1.body}")
 			rendered.should have_content("#{@post2.title}")
+			rendered.should have_content("#{@post2.body}")
+			rendered.should have_content("(yours)")
 		end
 		it "delete post link should exist" do
 			render	
@@ -57,7 +60,9 @@ describe "posts/index.html.erb" do
 			#je veux <ul><li> Titre post</li><li> Titre post2 </li></ul>
 			rendered.should have_selector("table td")
 			rendered.should have_content("#{@post1.title}")
+			rendered.should have_content("#{@post1.body}")
 			rendered.should have_content("#{@post2.title}")
+			rendered.should have_content("#{@post2.body}")
 		end
 		it "show post link should exist" do
 			render	

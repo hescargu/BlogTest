@@ -4,8 +4,7 @@ describe "PostEdit" do
   describe "GET /posts/:id/edit" do
 
     before(:each) do
-	@post = Post.create(:title => "sujet", :body => "bla bla")
-	@posts = [@post]
+
       @user = User.create(:email => "test@test.com", :password => "pwdtest", :password_confirmation => "pwdtest")
       @params_user = {"user" => { :email =>  @user.email, :password => @user.password }}
       visit new_user_path
@@ -19,6 +18,8 @@ describe "PostEdit" do
       fill_in("Email", :with => @user.email)
       fill_in("Password", :with => @user.password)
       click_button("Log in")
+	@post = Post.create(:title => "sujet", :body => "bla bla", :user_id => @user.id)
+	@posts = [@post]
   end
 
     it "Creation" do

@@ -1,3 +1,4 @@
+
 <h1>Post details</h1>
 
 <div class="affichagepost">
@@ -9,6 +10,21 @@
 <p>
   <b>Body: &nbsp;</b>
   <%= @post.body %>
+</p>
+
+<p>
+  <b>Posted by : &nbsp;</b>
+  <%= User.find(@post.user_id).email %>
+</p>
+
+<p>
+  <b> Creation : &nbsp;</b>
+  <%= @post.created_at.to_s.chomp('UTC') %>
+</p>
+
+<p>
+  <b> Last update : &nbsp;</b>
+  <%= @post.updated_at.to_s.chomp('UTC') %>
 </p>
 <br />
 
@@ -43,7 +59,7 @@
 
 <p>
 <% if current_user then %>
-<%= link_to 'Edit', edit_post_path(@post) %> | <%= link_to 'Log out', "/sessions/current_user", :method => 'delete' %>
+<%= link_to 'Edit', edit_post_path(@post) %> 
 <%else%>
 <%= link_to 'Log in', new_session_path %> 
 <%end%>

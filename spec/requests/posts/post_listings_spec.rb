@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe "PostListings" do
   before(:each) do
-	@post1 = Post.create(:title => "sujet1", :body => "bla bla")
-	@post2 = Post.create(:title => "sujet2", :body => "bla bla")
+	@post1 = Post.create(:title => "sujet1", :body => "bla bla", :user_id => "1")
+	@post2 = Post.create(:title => "sujet2", :body => "bla bla", :user_id => "1")
       @user = User.create(:email => "test@test.com", :password => "pwdtest", :password_confirmation => "pwdtest")
       @params_user = {"user" => { :email =>  @user.email, :password => @user.password }}
       visit new_user_path
@@ -21,10 +21,9 @@ describe "PostListings" do
   describe "GET /post_listings" do
     it "Affichage" do
       # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-      get posts_path
-      response.status.should be(200)
-	response.body.should include(@post1.title)
-	response.body.should include(@post2.title)
+      visit posts_path
+	page.should have_content(@post1.title)
+	page.should have_content(@post2.title)
     end
     it "show, edit and delete comment link should exist" do
 	visit posts_path

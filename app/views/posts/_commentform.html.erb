@@ -2,7 +2,7 @@
 
   <div class="field">
     <%= label_tag :author %><br />
-    <%= text_field_tag :author %>
+    <%= text_field_tag :author, :value => User.find(session[:user_id]).email %>
   </div>
   <br />
   <div class="field">

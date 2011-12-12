@@ -4,7 +4,7 @@ describe PostsController do
 
 	describe "index" do
 		before(:each) do
-			@posts = [stub_model(Post,:title => "sujet 1"), stub_model(Post, :title => "sujet 2")]
+			@posts = [stub_model(Post,:title => "sujet 1", :body => "corps1", :user_id => "1"), stub_model(Post, :title => "sujet 2", :body => "corps1", :user_id => "1")]
 			#change le résultat de Post.all
 			Post.stub(:all) { @posts } #renvoi @posts à la place du vrai résultat du Post.all
 			controller.stub!(:require_user).and_return(true)
@@ -20,7 +20,7 @@ describe PostsController do
 	end
 	describe "show" do
 		before(:each) do
-			@post = stub_model(Post,:title => "sujet", :body => "rfhgpqrvb")
+			@post = stub_model(Post,:title => "sujet", :body => "rfhgpqrvb", :user_id => "1")
 			@posts = [@post]
 			#change le résultat de Post.find
 			Post.stub(:find) { @post } #renvoi @post à la place du vrai résultat du Post.find
@@ -36,7 +36,7 @@ describe PostsController do
 	end
 	describe "edit" do
 		before(:each) do
-			@post = stub_model(Post,:title => "sujet", :body => "rfhgpqrvb")
+			@post = stub_model(Post,:title => "sujet", :body => "rfhgpqrvb", :user_id => "1")
 			@posts = [@post]
 			#change le résultat de Post.find
 			Post.stub(:find) { @post } #renvoi @post à la place du vrai résultat du Post.find
@@ -70,7 +70,7 @@ describe PostsController do
 	describe "create" do
 		before(:each) do
 			@post = stub_model(Post,:title => "sujet2", :body => "rfhergzb")
-			@post_params = {"post" => { "title" => "post_title", "body" => "post_body"}}
+			@post_params = {"post" => { "title" => "post_title", "body" => "post_body", "user_id" => "1"}}
 			@posts = [@post2]
 			Post.stub(:create) { @post }
 			Post.stub(:save) {true}

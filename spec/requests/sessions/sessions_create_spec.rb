@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe "CreateSessions" do
-pending "test de creation de session quand session cree"
 before(:each) do
       @user = User.create(:email => "test@test.com", :password => "pwdtest", :password_confirmation => "pwdtest")
 end
@@ -36,8 +35,9 @@ end
       fill_in("Password", :with => @user.password)
       click_button("Log in")
     end
-    it "should display the todo list" do
+    it "should display the post list connected as the user logged in" do
       current_path.should == posts_path
+      page.should have_content("Connected as #{@user[:email]}")
     end
     
   end

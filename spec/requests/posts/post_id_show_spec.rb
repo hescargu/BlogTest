@@ -2,11 +2,7 @@ require 'spec_helper'
 
 describe "PostIdShow" do
   before(:each) do
-	@post = Post.create(:title => "sujet", :body => "cacahuete")
-	@comments = [Comment.create(:author => "auteur", :body => 'commentaire bla bla bla', :post_id => @post.id)]
-	@post.comments = @comments
       	@user = User.create(:email => "test@test.com", :password => "pwdtest", :password_confirmation => "pwdtest")
-      	@params_user = {"user" => { :email =>  @user.email, :password => @user.password }}
       	visit new_user_path
       	#post "/users", @params_user
       	fill_in("Email", :with => @user.email)
@@ -18,6 +14,10 @@ describe "PostIdShow" do
       	fill_in("Email", :with => @user.email)
       	fill_in("Password", :with => @user.password)
      	click_button("Log in")
+	@post = Post.create(:title => "sujet", :body => "cacahuete", :user_id => @user.id)
+	@comments = [Comment.create(:author => "auteur", :body => 'commentaire bla bla bla', :post_id => @post.id)]
+	@post.comments = @comments
+      	@params_user = {"user" => { :email =>  @user.email, :password => @user.password }}
   end
   describe "GET /posts/:id" do
 	it "affichagePost" do

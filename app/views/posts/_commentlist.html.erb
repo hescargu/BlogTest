@@ -3,5 +3,6 @@
 	<td> <%= comment.author %> &nbsp;&nbsp;</td>
 	<td><%= comment.body%> &nbsp;&nbsp;</td>
 	<td><%= link_to "Delete Comment", "/posts/#{@post.id}/comments/#{comment.id}", :method => :delete%> &nbsp;&nbsp;</td>
+	<td><i><%= "posted on : " + @post.created_at.to_s.chomp('UTC') %></i></td>
 </tr>
 <% end %>
