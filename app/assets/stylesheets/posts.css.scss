@@ -6,6 +6,25 @@ $orange: #D04000;
 $blue: #2CA2AF;
 $margin: 16px;
 
+.accueil {
+    border-color: $blue;	
+  color:
+    darken($blue, 9%);
+  font-size: xx-large;
+  font-variant: small-caps;
+  font-weight: bold;
+  text-align: center;
+}
+
+.button {
+  background: #FFFFFF; 
+  color: blue;
+}
+
+td {
+	vertical-align: top;
+}
+
 .content-navigation {
   border-color: $black;
   color:

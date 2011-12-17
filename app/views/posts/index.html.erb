@@ -16,10 +16,10 @@
     <tr>
 	<td> <%= post.title %> &nbsp; &nbsp;</td>
 	<td><%= post.body %> &nbsp; &nbsp;</td>
-	<td><%= link_to "Show Post", post_path(post.id)%> &nbsp; &nbsp;</td>
+	<td><%= button_to('Show Post', post_path(post.id), :method => "get", :style => "background: #F1F1F1; color: #2CA2AF") %>&nbsp; &nbsp;</td>
 	<% if current_user and current_user.id == post.user_id then %>
-		<td><%= link_to "Edit Post", edit_post_path(post.id)%> &nbsp; &nbsp;</td>
-		<td><%= link_to "Delete Post", post, :method => 'delete'%> &nbsp; &nbsp;</td> 
+		<td><%= button_to('Edit Post', edit_post_path(post.id), :method => "get", :style => "background: #F1F1F1; color:#2CA2AF") %>&nbsp; &nbsp;</td>
+		<td><%= button_to('Delete Post', post, :confirm => 'Are you sure?', :method => "delete", :style => "background: #F1F1F1; color: #2CA2AF") %>&nbsp; &nbsp;</td>
 	<% else %>
 		<td> </td>
 		<td> </td> 

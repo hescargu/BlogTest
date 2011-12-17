@@ -47,7 +47,7 @@ describe "CreateComments" do
     it "should display the new comment in the list" do
       visit posts_path
       within("tr", :text => @post.title) do
-         click_link("Show Post")
+         click_button("Show Post")
       end
       current_path.should == post_path(@post.id)
       click_link("Add a comment")

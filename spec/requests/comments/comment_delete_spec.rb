@@ -12,15 +12,15 @@ describe "DeleteComments" do
         click_button("Log in")
     end
     describe "a comment in the list" do
-      it "should have a delete link" do
+      it "should have a delete button" do
         visit post_path(@post)
-        page.should have_link("Delete Comment")
+        page.should have_button("Delete Comment")
       end
     end
-    describe "after a click on the delete link on the 2nd post" do
+    describe "after a click on the delete button on the 2nd post" do
       it "should display the list without the post2" do
 	 visit post_path(@post)
-       	 click_link("Delete Comment")
+       	 click_button("Delete Comment")
          current_path.should == post_path(@post)
          page.should_not have_content(@post.comments[0].body)
       end

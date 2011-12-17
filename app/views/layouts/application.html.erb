@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>BlogTest</title>
+  <title>Blog d'Hélène</title>
   <%= stylesheet_link_tag    "application" %>
   <%= stylesheet_link_tag    "main" %>
   <%= javascript_include_tag "application" %>
@@ -11,8 +11,9 @@
 <div class="border">
 <div class="content-navigation">
 <% if current_user then %> 
-<p align=right> Connected as <i><%= User.find(current_user.id).email %></i> | <%= link_to 'Log out', "/sessions/current_user", :method => 'delete'%> </p>
+<p align=right> Connected as <i><%= User.find(current_user.id).email %></i> | <%= link_to 'Log out', "/sessions/current_user", :method => 'delete'%> | <%= link_to 'Delete your account', "/users/#{session[:user_id]}", :method => 'delete'%> </p>
 <% end %>
+<div class=accueil> Welcome on Helen's blog !</div>
 <%= yield %>
 </div>
 </div>

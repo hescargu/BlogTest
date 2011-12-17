@@ -43,7 +43,7 @@
     <th></th>
     <th></th>
   </tr>
-	<%= render 'commentlist' %>
+	<%= render 'comments/commentlist', :remote => true %>
 </table>
 <br />
 </p>
@@ -58,11 +58,12 @@
 <HR width=70% align=left>
 
 <p>
-<% if current_user then %>
-<%= link_to 'Edit', edit_post_path(@post) %> 
-<%else%>
-<%= link_to 'Log in', new_session_path %> 
+<% if current_user and current_user.id == @post.user_id then %>
+<%= link_to 'Edit', edit_post_path(@post) %> |
 <%end%>
-|
+<% if !current_user then %>
+<%= link_to 'Log in', new_session_path %> |
+<% end %>
+
 <%= link_to 'Back', posts_path %>  
 </p>

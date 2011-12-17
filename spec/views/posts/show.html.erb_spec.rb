@@ -28,6 +28,16 @@ describe "posts/show.html.erb" do
 			rendered.should have_link('Edit', :href => edit_post_path(@post.id))
 		end
 	end
+	describe 'user is not the author of the post' do
+		before(:each) do 
+			@user2 = User.create(:email => "test2@test.com", :password => "pwdtest2", :password_confirmation => "pwdtest2")
+			@post = stub_model(Post, :title => "sujet", :body => "cacahuete", :user_id => @user2.id)
+		end
+		it 'can not edit the post' do
+			render 
+			rendered.should_not have_link('Edit', :href => edit_post_path(@post.id))
+		end
+	end 
 	describe 'commentaires' do
 		it 'list comments' do
 			render
@@ -45,7 +55,7 @@ describe "posts/show.html.erb" do
 
 		it "affiche le lien de suppression d'un commentaire" do
 			render
-			rendered.should have_link('Delete Comment')
+			rendered.should have_button('Delete Comment')
 		end
 	end
 	describe "lien log in quand user non authentifie" do

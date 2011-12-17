@@ -9,6 +9,7 @@ describe "posts/index.html.erb" do
 		@post1 = stub_model(Post, :title => "sujet 1", :body => "corps1", :user_id => @user.id) 
 		@post2 = stub_model(Post, :title => "sujet 2", :body => "corps2", :user_id => @user.id)
 		@post3 = stub_model(Post, :title => "sujet 3", :body => "corps3", :user_id => @user2.id)
+		@posts = [@post1, @post2, @post3]
 		assign(:posts, [@post1,@post2,@post3])
 		view.stub(:current_user).and_return(@user)
 	end
@@ -24,17 +25,17 @@ describe "posts/index.html.erb" do
 			rendered.should have_content("#{@post2.body}")
 			rendered.should have_content("(yours)")
 		end
-		it "delete post link should exist" do
+		it "delete post button should exist" do
 			render	
-			rendered.should have_link('Delete Post')
+			rendered.should have_button('Delete Post')
 		end
-		it "edit post link should exist" do
+		it "edit post button should exist" do
 			render	
-			rendered.should have_link('Edit Post')
+			rendered.should have_button('Edit Post')
 		end
-		it "show post link should exist" do
+		it "show post button should exist" do
 			render	
-			rendered.should have_link('Show Post')
+			rendered.should have_button('Show Post')
 		end
 		it "New post link should exist" do
 			render	
@@ -50,6 +51,21 @@ describe "posts/index.html.erb" do
 		end
 	end
 
+	describe "posts/index.html.erb avec mauvaise authentification" do
+		before(:each) do
+			@posts = [@post3]
+			assign(:posts, [@post3])
+		end
+		it "delete post button should not exist" do
+			render	
+			rendered.should_not have_button('Delete Post')
+		end
+		it "edit post button should not exist" do
+			render	
+			rendered.should_not have_button('Edit Post')
+		end
+	end
+
 	describe "posts/index.html.erb sans authentification" do
 		before (:each) do
 			view.stub!(:current_user).and_return(nil)
@@ -57,16 +73,23 @@ describe "posts/index.html.erb" do
 		it "should display a html list" do
 			#on calcule le template
 			render
-			#je veux <ul><li> Titre post</li><li> Titre post2 </li></ul>
 			rendered.should have_selector("table td")
 			rendered.should have_content("#{@post1.title}")
 			rendered.should have_content("#{@post1.body}")
 			rendered.should have_content("#{@post2.title}")
 			rendered.should have_content("#{@post2.body}")
 		end
-		it "show post link should exist" do
+		it "show post button should exist" do
 			render	
-			rendered.should have_link('Show Post')
+			rendered.should have_button('Show Post')
+		end
+		it "delete post button should not exist" do
+			render	
+			rendered.should_not have_button('Delete Post')
+		end
+		it "edit post button should not exist" do
+			render	
+			rendered.should_not have_button('Edit Post')
 		end
 		it "Log in link should exist" do
 			render	

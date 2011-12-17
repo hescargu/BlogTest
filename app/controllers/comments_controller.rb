@@ -11,8 +11,8 @@ class CommentsController < ApplicationController
 		@post = Post.find(params[:post_id])
 		@comment = @post.comments.create("author" => params[:author], "body" => params[:body])
 		respond_to do |format|
-			format.html { redirect_to post_path(@post), notice: 'Comment was successfully created.' }
 			format.js
+			format.html { redirect_to post_path(@post), notice: 'Comment was successfully created.' }
 		end
 	end
 	def destroy

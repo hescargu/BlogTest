@@ -22,7 +22,6 @@ BlogTest::Application.routes.draw do
   #match '/posts/new' => 'posts#new', :as => "new_post", :method => :get 
   #match '/posts' => 'posts#create', :method => :post 
   #match '/posts/:id' => 'posts#update', :method => :put 
-  #match '/posts/:id' => 'posts#destroy',  :method => :delete 
   
 
 #    posts GET    /posts(.:format)          {:action=>"index", :controller=>"posts"}

@@ -25,11 +25,11 @@ describe "PostListings" do
 	page.should have_content(@post1.title)
 	page.should have_content(@post2.title)
     end
-    it "show, edit and delete comment link should exist" do
+    it "show, edit and delete comment button should exist" do
 	visit posts_path
-	page.should have_link('Show Post')
-	page.should have_link('Edit Post')
-	page.should have_link('Delete Post')
+	page.should have_button('Show Post')
+	page.should have_button('Edit Post')
+	page.should have_button('Delete Post')
     end
     it "new post link should exist" do
 	visit posts_path

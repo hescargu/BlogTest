@@ -1,4 +1,4 @@
-$("form").remove(); //supprime les formulaires existants
+
 $("a[href='<%= new_post_path %>']").after("<%= escape_javascript(render 'form') %>"); //récup lien page html et ajout (after) d'un formulaire form
 $("form#new_post").attr("data-remote", true);	//récup du form en rajoutant attribut data-remote ajax (si true, soumettre avec AJAX)
 $("a[href='<%= new_post_path %>']").fadeOut()	//cacher le lien puisque le formulaire création y est déjà

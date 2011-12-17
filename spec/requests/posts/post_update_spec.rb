@@ -69,7 +69,7 @@ end
       @post = @posts[1]
       visit posts_path
       within("tr", :text => @post.title) do
-        	click_link("Edit Post")
+        	click_button("Edit Post")
       end
       current_path.should == edit_post_path(@post.id)
       fill_in("Title", :with => "post 1")
