@@ -14,17 +14,19 @@ describe "PostIdShow" do
       	fill_in("Email", :with => @user.email)
       	fill_in("Password", :with => @user.password)
      	click_button("Log in")
-	@post = Post.create(:title => "sujet", :body => "cacahuete", :user_id => @user.id)
+	@post = Post.create(:title => "sujet", :body => "cacahuete", :user_id => @user.id, :note => 3.00)
 	@comments = [Comment.create(:author => "auteur", :body => 'commentaire bla bla bla', :post_id => @post.id)]
 	@post.comments = @comments
+	@marks = [Mark.create(:value => 3, :post_id => @post.id)]
+	@post.marks = @marks
       	@params_user = {"user" => { :email =>  @user.email, :password => @user.password }}
   end
   describe "GET /posts/:id" do
 	it "affichagePost" do
-		get "/posts/#{@post.id}" 
-		response.status.should be(200)
-		response.body.should include(@post.title)
-		response.body.should include(@post.body)	
+		visit post_path(@post) 
+		page.should have_content(@post.title)
+		page.should have_content(@post.body)
+		page.should have_content(@post.note)	
 	end
 	it "link should exist" do
 		visit "/posts/#{@post.id}"

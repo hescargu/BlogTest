@@ -7,6 +7,7 @@ Première visite : page d'accueil "http://localhost:3000/posts"
 		* Voir le détail d'un post ("Show post") et ce qui en découle à savoir :
 			=> Voir la liste des commentaires du post
 			=> Ecrire un commentaire sur le post
+			=> Noter le post
 		* S'enregistrer (créer une session utilisateur)
 		* Créer un compte utilisateur
 
@@ -75,6 +76,14 @@ Suppression d'un commentaire :
 	- Le commentaire doit disparaitre de la liste des commentaires des posts
 
 
+Ajout d'un commentaire ("http://localhost:3000/post/:id"): 
+	- Avec ou sans authentification
+	- Après un click sur "Mark this post" :
+		* Si javascript activé => apparition du formulaire de notation
+		* Sinon => redirection vers la page "http://localhost:3000/posts/34/marks/new" affichant le formulaire de notation
+	- Une fois le formulaire affiché, il suffit de le remplir avecla valeur souhaitée
+	- Puis cliquer sur "Submit Mark"
+	- La note du post est modifiée
 
 
 Remarques sur mon blog :

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "CreateComments" do
     before(:each) do
 	@user = User.create(:email => "test@test.com", :password => "pwdtest", :password_confirmation => "pwdtest")
-      	@post = Post.create(:title => "sujet", :body => "cacahuete", :user_id => @user.id)
+      	@post = Post.create(:title => "sujet", :body => "cacahuete", :user_id => @user.id, :note => 3.00)
       	@posts = [@post]
       	@comment = Comment.create(:author => "Helene", :body => "hello", :post_id => @post.id)
       	@comments = [@comment]

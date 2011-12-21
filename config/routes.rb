@@ -13,6 +13,7 @@ BlogTest::Application.routes.draw do
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   resources :posts do
   	resources :comments 
+	resources :marks
   end
   resources :users 
   resources :sessions

@@ -4,7 +4,7 @@ describe "DeleteComments" do
   describe "GET /posts/:id_post" do
     before(:each) do
 	@user = User.create(:email => "test@test.com", :password => "pwdtest", :password_confirmation => "pwdtest")
-	@post = Post.create(:title => "sujet", :body => "cacahuete", :user_id => @user.id)
+	@post = Post.create(:title => "sujet", :body => "cacahuete", :user_id => @user.id, :note => 3.00)
 	@post.comments = [Comment.create(:author => "auteur", :body => "commentaire")]
         visit new_session_path
         fill_in("Email", :with => @user.email)

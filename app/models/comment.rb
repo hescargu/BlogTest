@@ -3,4 +3,5 @@ class Comment < ActiveRecord::Base
 	validates :author, :body, :presence => true
         validates :author, :length => { :in => 2..30 }
 	validates :body, :length => { :in => 2..500 }
+	validates_associated :posts
 end

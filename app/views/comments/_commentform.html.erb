@@ -1,4 +1,4 @@
-<%= form_tag("/posts/#{@post.id}/comments", :remote => true) %>
+<%= form_tag("/posts/#{@post.id}/comments") %>
 
   <div class="field">
     <%= label_tag :author %><br />
@@ -10,5 +10,5 @@
     <%= text_area_tag :body %>
   </div>
   <div class="actions">
-    <%= submit_tag value = "Create Comment", :remote => true %>
+    <%= submit_tag value = "Create Comment" %>
   </div>

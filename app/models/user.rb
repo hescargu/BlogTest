@@ -8,4 +8,5 @@ class User < ActiveRecord::Base
   validates_presence_of :password_confirmation, :message => 'is required'
   validates_presence_of :email, :message => 'is required'
   validates :email, :uniqueness => true
+  validates_associated :posts
 end

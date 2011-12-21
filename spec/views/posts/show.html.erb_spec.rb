@@ -4,7 +4,7 @@ describe "posts/show.html.erb" do
 	before (:each) do
 		@user = User.create(:email => "test@test.com", :password => "pwdtest", :password_confirmation => "pwdtest")
 		view.stub!(:current_user).and_return(@user)
-		@post = stub_model(Post, :title => "sujet", :body => "cacahuete", :user_id => @user.id)
+		@post = stub_model(Post, :title => "sujet", :body => "cacahuete", :user_id => @user.id, :note => 3)
 		@comments = [stub_model(Comment, :author => "auteur", :body => 'commentaire bla bla bla', :post_id => @post.id)]
 		@post.comments = @comments
 		assign(:post, @post)
@@ -18,6 +18,7 @@ describe "posts/show.html.erb" do
 			rendered.should have_content("#{User.find(@post.user_id).email}")
 			rendered.should have_content("#{@post.created_at.to_s.chomp('UTC')}")
 			rendered.should have_content("#{@post.updated_at.to_s.chomp('UTC')}")
+			rendered.should have_content("#{@post.note}")
 		end
 		it "link should exist" do
 			render 
@@ -68,5 +69,12 @@ describe "posts/show.html.erb" do
 			rendered.should have_link('Log in', :href => new_session_path)
 		end		
 	end
+	describe 'notes' do
+		it "devrait afficher le lien vers le formulaire de nouvelle note" do
+			#on calcule le template
+			render
+			rendered.should have_link('Mark this post', :href => new_post_mark_path(@post))			
 
+	end		
+	end
 end

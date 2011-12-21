@@ -1,0 +1,10 @@
+<%= form_tag("/posts/#{@post.id}/marks") %>
+<% @tableau = {"0" => 0, "1" => 1, "2" => 2, "3" => 3, "4" => 4, "5" => 5} %>
+  <br />
+  <div class="field">
+    <%= label_tag :value %>
+    <%= select_tag "value", options_for_select(@tableau) %>
+  </div>
+  <div class="actions">
+    <%= submit_tag value = "Submit Mark" %>
+  </div>

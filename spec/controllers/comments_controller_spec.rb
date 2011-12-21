@@ -4,7 +4,7 @@ describe CommentsController do
 	describe "new" do
 		before(:each) do
 			@user = User.create(:email => "test@test.com", :password => "password", :password_confirmation => "password")
-			@post = stub_model(Post,:title => "sujet", :body => "rfhgpqrvb", :user_id => @user.id)
+			@post = stub_model(Post,:title => "sujet", :body => "rfhgpqrvb", :user_id => @user.id, :note => 3.00)
 			@comment = stub_model(Comment, :author => "auteur", :body => "commentaire", :post_id => @post.id)
 			@comments = [stub_model(Comment, :author => "auteur", :body => "commentaire", :post_id => @post.id)]
 			@posts = [@post]
@@ -25,9 +25,9 @@ describe CommentsController do
 	describe "create" do
 		before(:each) do
 			@user = User.create(:email => "test@test.com", :password => "password", :password_confirmation => "password")
-			@posts = [stub_model(Post,:title => "sujet1", :body => "rfhergzb", :user_id => @user.id), 
-				  stub_model(Post,:title => "sujet3", :body => "rfhevfevfrgzb", :user_id => @user.id), 
-				  stub_model(Post,:title => "sujet4", :body => "rregagfhergzb", :user_id => @user.id)]
+			@posts = [stub_model(Post,:title => "sujet1", :body => "rfhergzb", :user_id => @user.id, :note => 3.00), 
+				  stub_model(Post,:title => "sujet3", :body => "rfhevfevfrgzb", :user_id => @user.id, :note => 3.00), 
+				  stub_model(Post,:title => "sujet4", :body => "rregagfhergzb", :user_id => @user.id, :note => 3.00)]
 			@post = @posts[0]
 			@new_comment1 = {"author" => "new auteur", "body" => "new commentaire", "post_id" => @post.id}
 			@new_comment2 = {"comment" => {"author" => "new auteur", "body" => "new commentaire"}}
@@ -51,9 +51,9 @@ describe CommentsController do
 	describe "destroy" do
 		before(:each) do
 			@user = User.create(:email => "test@test.com", :password => "password", :password_confirmation => "password")
-			@posts = [stub_model(Post,:title => "sujet1", :body => "rfhergzb", :user_id => @user.id), 
-				  stub_model(Post,:title => "sujet3", :body => "rfhevfevfrgzb", :user_id => @user.id), 
-				  stub_model(Post,:title => "sujet4", :body => "rregagfhergzb", :user_id => @user.id)]
+			@posts = [stub_model(Post,:title => "sujet1", :body => "rfhergzb", :user_id => @user.id, :note => 3.00), 
+				  stub_model(Post,:title => "sujet3", :body => "rfhevfevfrgzb", :user_id => @user.id, :note => 3.00), 
+				  stub_model(Post,:title => "sujet4", :body => "rregagfhergzb", :user_id => @user.id, :note => 3.00)]
 			@post = @posts[0]
 			@comment = stub_model(Comment, :author => "auteur", :body => "commentaire", :post_id => @post.id)
 			@comments = [@comment]

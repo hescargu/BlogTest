@@ -18,7 +18,7 @@ describe "PostEdit" do
       fill_in("Email", :with => @user.email)
       fill_in("Password", :with => @user.password)
       click_button("Log in")
-	@post = Post.create(:title => "sujet", :body => "bla bla", :user_id => @user.id)
+	@post = Post.create(:title => "sujet", :body => "bla bla", :user_id => @user.id, :note => 3.00)
 	@posts = [@post]
   end
 

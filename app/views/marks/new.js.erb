@@ -1,0 +1,3 @@
+$("a[href='<%= new_post_mark_path(@post) %>']").after("<%= escape_javascript(render 'marks/markform') %>");
+$("form#new_post_mark").attr("data-remote", true);	
+$("a[href='<%= new_post_mark_path(@post) %>']").fadeOut();
