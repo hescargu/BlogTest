@@ -1,8 +1,8 @@
-<%= form_tag "/posts/#{@post.id}/comments" %>
+<%= form_tag("/posts/#{@post.id}/comments", :remote=>true) %>
 
   <div class="field">
     <%= label_tag :author %><br />
-    <%= text_field_tag :author, :value => User.find(session[:user_id]).email %>
+    <%= text_field_tag :author %>
   </div>
   <br />
   <div class="field">
@@ -10,5 +10,5 @@
     <%= text_area_tag :body %>
   </div>
   <div class="actions">
-    <%= submit_tag value = "Create Comment"%>
+    <%= submit_tag value = "Create Comment" %>
   </div>

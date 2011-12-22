@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe "posts/show.html.erb" do
+
+pending "probleme suppression formulaire javascript"
+
 	before (:each) do
 		@user = User.create(:email => "test@test.com", :password => "pwdtest", :password_confirmation => "pwdtest")
 		view.stub!(:current_user).and_return(@user)

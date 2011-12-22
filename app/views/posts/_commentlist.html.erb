@@ -2,7 +2,7 @@
 <tr>
 	<td> <%= comment.author %> &nbsp;&nbsp;</td>
 	<td><%= comment.body%> &nbsp;&nbsp;</td>
-	<td><%= button_to_remote('Delete Comment', "/posts/#{@post.id}/comments/#{comment.id}",  :confirm => 'Are you sure?', :method => "delete", :style => "background: #F1F1F1; color: #2CA2AF; width:130px; height: 19px; font-size: small")%>&nbsp; &nbsp;</td>
+	<td><%= button_to('Delete Comment', "/posts/#{@post.id}/comments/#{comment.id}", :confirm => 'Are you sure?', :method => "delete", :style => "background: #F1F1F1; color: #2CA2AF; width:130px; height: 19px; font-size: small") %>&nbsp; &nbsp;</td>
 	<td><i><%= "posted on : " + @post.created_at.to_s.chomp('UTC') %></i></td>
 </tr>
 <% end %>

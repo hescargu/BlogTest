@@ -20,6 +20,7 @@ class MarksController < ApplicationController
 		@post.update_attribute(:note, $note)
 		respond_to do |format|
 			format.html { redirect_to post_path(@post), notice: 'Mark was successfully added.' }
+			format.js
 		end
 	end
 end

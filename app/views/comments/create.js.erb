@@ -1,4 +1,4 @@
 $("body table tbody").append("<tr><td><%= escape_javascript(@comment.author)%></td><td><%= escape_javascript(@comment.body)%>&nbsp; &nbsp;</td><td><%= escape_javascript(button_to('Delete Comment', "/posts/#{@post.id}/comments/#{@comment.id}", :method => "delete", :remote => true, :style => "background: #F1F1F1; color: #2CA2AF"))  %>&nbsp; &nbsp;</td><td><i><%= escape_javascript("posted on : " + @post.created_at.to_s.chomp('UTC'))%></i>&nbsp; &nbsp;</td></tr>");
-$("form_tag").remove();
+$("form#new_post_comment").remove();
 $("a[href='<%= new_post_comment_path(@post.id) %>']").fadeIn();
 

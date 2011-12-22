@@ -1,4 +1,4 @@
-<%= form_tag("/posts/#{@post.id}/comments") %>
+<%= form_tag("/posts/#{@post.id}/comments", :remote=>true) %>
 
   <div class="field">
     <%= label_tag :author %><br />

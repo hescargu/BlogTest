@@ -18,3 +18,5 @@ class SessionsController < ApplicationController
     redirect_to posts_path, :notice => "Logged out!"
   end
 end
+
+

@@ -1,0 +1,4 @@
+$("#notepost").hide();
+$("#notepost").after(<%= escape_javascript(sprintf("%.2f",@post.note))%>);
+$("form#new_post_mark").remove();
+$("a[href='<%= new_post_mark_path(@post.id) %>']").fadeIn();

@@ -27,9 +27,10 @@
   <%= @post.updated_at.to_s.chomp('UTC') %>
 </p>
 
+
 <p>
   <b> Actual mark of this post :  &nbsp;</b>
-  <%= sprintf("%.2f",@post.note) + "/5" %>
+  <div id="notepost"><%= sprintf("%.2f",@post.note) + "/5"  %></div>&nbsp <i>|with <%= @post.marks.length %> marks</i>
 
 <p> 
  <%= link_to 'Mark this post', new_post_mark_path(@post.id), :remote => true %>
