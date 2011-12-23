@@ -1,8 +1,12 @@
-<%= form_tag("/posts/#{@post.id}/comments", :remote=>true) %>
+<%= form_tag("/posts/#{@post.id}/comments", :name => "commentform", :remote=>true) %>
 
   <div class="field">
     <%= label_tag :author %><br />
-    <%= text_field_tag :author %>
+	<% if session[:user_id] then %>
+		<%= text_field_tag :author, User.find(session[:user_id]).email %>
+	<% else %>
+    		<%= text_field_tag :author %>
+	<% end %>
   </div>
   <br />
   <div class="field">

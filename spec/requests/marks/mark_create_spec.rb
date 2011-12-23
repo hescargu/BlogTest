@@ -31,10 +31,9 @@ describe "CreateMarks" do
 
 
   describe "after a new mark has been created" do
-    it "should display the new mark in the list" do
+    it "should display the new mark in the page" do
       visit post_path(@post)
       click_link("Mark this post")
-      current_path.should == new_post_mark_path(@post.id)
       select("3", :from => "Value")
       click_button("Submit Mark")
       current_path.should == post_path(@post.id)

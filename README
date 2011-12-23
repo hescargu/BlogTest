@@ -65,7 +65,9 @@ Ajout d'un commentaire ("http://localhost:3000/post/:id"):
 	- Après un click sur "Add a comment" :
 		* Si javascript activé => apparition du formulaire de création de commentaire
 		* Sinon => redirection vers la page "http://localhost:3000/posts/34/comments/new" affichant le formulaire de création de commentaire
-	- Une fois le formulaire affiché, il suffit de le remplir avec votre nom (auteur) et le corps du commentaire souhaité
+	- Une fois le formulaire affiché :
+		* Si vous êtes authentifié, le blog prérempli le champ author avec votre adresse mail, sinon vous devez le remplir vous même
+		* Puis remplissez le corps du commentaire souhaité
 	- Puis cliquer sur "Create comment"
 	- Le commentaire s'affiche dans la liste des commentaires du post
 	
@@ -87,4 +89,5 @@ Ajout d'un commentaire ("http://localhost:3000/post/:id"):
 
 
 Remarques sur mon blog :
-	- J'ai du faire un choix pour le delete d'un comment et d'un post entre le fonctionnement avec javascript ou le fonctionnement sans javascript. En effet, l'utilisation des "link_to" empechait le delete lorsque le javascript était désactivé sur mon navigateur, alors que l'utilisation d'un "button_to" le permettait. J'ai préféré rendre accessible aux users sans javascript la suppression de commentaire (comme demandé dans le sujet) et donc enlever le javascript (qui est pourtant prêt si vous regardez dans mes views posts/destroy.js.erb et comments/destroy.js.erb) 
+	- Rq1 : J'ai du faire un choix pour le delete d'un comment et d'un post entre le fonctionnement avec javascript ou le fonctionnement sans javascript. En effet, 	l'utilisation des "link_to" empechait le delete lorsque le javascript était désactivé sur mon navigateur, alors que l'utilisation d'un "button_to" le permettait. 		J'ai préféré rendre accessible aux users sans javascript la suppression de commentaire (comme demandé dans le sujet) et donc enlever le javascript (qui est pourtant 		prêt si vous regardez dans mes views posts/destroy.js.erb et comments/destroy.js.erb) 
+	- Rq2 : Je tenais à vous faire remarqué (et je pense pouvoir parler pour toute la classe) que ce projet au lieu des 2h par semaine que vous nous aviez annoncé, nous 		en a finalement pris environ 10h/semaine depuis le lancement du projet. 
