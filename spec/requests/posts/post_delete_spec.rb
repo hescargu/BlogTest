@@ -3,11 +3,11 @@ require 'spec_helper'
 describe "DeletePosts" do
 
   before(:each) do
-    @posts = [Post.create(:title => "sujet1", :body => "bla ", :user_id => "1"),
-              Post.create(:title => "sujet2", :body => "bla bla", :user_id => "1"),
-              Post.create(:title => "sujet3", :body => "bla bla bla", :user_id => "1")]
+    @user = User.create(:email => "test@test.com", :password => "pwdtest", :password_confirmation => "pwdtest")
+    @posts = [Post.create(:title => "sujet1", :body => "bla ", :user_id => @user.id),
+              Post.create(:title => "sujet2", :body => "bla bla", :user_id => @user.id),
+              Post.create(:title => "sujet3", :body => "bla bla bla", :user_id => @user.id)]
     @post = @posts[1]
-      @user = User.create(:email => "test@test.com", :password => "pwdtest", :password_confirmation => "pwdtest")
       @params_user = {"user" => { :email =>  @user.email, :password => @user.password }}
       visit new_user_path
       #log in

@@ -47,6 +47,12 @@ class PostsController < ApplicationController
 
   def destroy
 	@post = Post.find(params[:id])
+	@post.comments.each do |comment|
+		comment.destroy
+	end
+	@post.marks.each do |mark|
+		mark.destroy
+	end
 	@post.destroy
     	respond_to do |format|
       		format.html { redirect_to posts_path, notice: 'Post was successfully deleted.'}
@@ -55,6 +61,10 @@ class PostsController < ApplicationController
   end
   def update
 	@post = Post.find(params[:id])
+	@post.marks.each do |mark|
+		mark.destroy
+	end
+	@post.note = 0.0
     	respond_to do |format|
 	      	if @post.update_attributes(params[:post])
 			format.html { redirect_to posts_path, notice: 'Post was successfully updated.' }

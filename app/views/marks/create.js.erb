@@ -1,4 +1,4 @@
-$("#notepost").hide();
-$("#notepost").after("/5").after(<%= escape_javascript(sprintf("%.2f",@post.note))%>);
+$("span").each(function (i) {if (this.id="mark") {$(this).hide();}});
+$("#mark").after('<span id="mark"><p><b> Actual mark of this post :  &nbsp;</b>  <span id="notepost"><%= escape_javascript(sprintf("%.2f",@post.note)) + "/5"  %></span>&nbsp<i>|with <span id="nbmark"> <%= @post.marks.length %> marks </span></i> </p></span>');
 $("form[data-remote]").remove();
 $("a[href='<%= new_post_mark_path(@post.id) %>']").fadeIn();

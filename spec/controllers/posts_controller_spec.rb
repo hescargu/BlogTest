@@ -105,11 +105,27 @@ describe PostsController do
   	end
 
 
+
+
 	describe "destroy" do
 	    before(:each) do
-	      @post = stub_model(Post, :title => "sujet", :body => "rfhgpqrvb")
-	      @post.stub(:destroy){ true }
+	      @user = User.create(:email => "test@test.com", :password => "password", :password_confirmation => "password")
+	      @post = Post.create(:title => "sujet", :body => "rfhgpqrvb", :user_id => @user.id)
+	      @posts = [@post]
+	      @marks = [Mark.create(:value => "2", :post_id => @post.id), Mark.create(:value => "2", :post_id => @post.id)]
+	      @mark = @marks[1]
+	      @post.marks = @marks	
+	      @comments = [Comment.create(:author => "auteur", :body => "body", :post_id => @post.id), Comment.create(:author => "auteur", :body => "body", :post_id => @post.id)]
+	      @comment = @comments[1]
+	      @post.comments = @comments
+	      @post.stub(:destroy){ true}
+	      @post.stub(:marks){ @marks }
+	      @post.stub(:comments){ @comments }
 	      Post.stub(:find){ @post }
+	      @comments.stub(:each){ @comment }
+	      @marks.stub(:each){@mark}
+	      @comment.stub(:destroy){true}
+	      @mark.stub(:destroy){true}
 		controller.stub!(:require_user).and_return(true)
 	    end
 	    it "should redirect to the posts list" do
@@ -125,6 +141,22 @@ describe PostsController do
 	    it "should destroy the post" do
 	      @post.should_receive(:destroy)
 	      delete :destroy, {:id => @post.id }
+	    end
+	    it "should destroy the comments of the post" do
+		@post.should_receive(:comments).and_return(@comments)
+		@comments.should_receive(:each)
+		@comments.each do |comment|
+			comment.should_receive(:destroy)
+		end
+		delete :destroy, {:id => @post.id }
+	    end
+	    it "should destroy the marks of the post" do
+		@post.should_receive(:marks).and_return(@marks)
+		@marks.should_receive(:each)
+	        @marks.each do |mark| 
+			mark.should_receive(:destroy)
+		end
+	        delete :destroy, {:id => @post.id }
 	    end
 	end
 end

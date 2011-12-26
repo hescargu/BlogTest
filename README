@@ -54,9 +54,18 @@ Création d'un post :
 	- Puis cliquer sur "Create post"
 	- Le post créé s'affiche dans la liste des posts de la page d'accueil
 
+Edition d'un post :
+	- Authentification obligatoire
+	- Si le post est le votre => un click sur "Edit Post" à partir de la page d'accueil ou sur "Edit" à partir de la page d'affichage du post vous redirigera vers la 		page d'édition d'un post ("/posts/:post_id/edit")
+	- Modifier les champs du formulaire d'édition déjà prérempli pour y mettre le contenu souhaité
+	- Cliquer sur "Update Post"
+	- Le post doit avoir subi les modifications souhaitées dans la liste des posts
+	- Rq : L'édition d'un post supprimera les notes existantes avant la modification
+
+
 Suppression d'un post :
 	- Authentification obligatoire
-	- Si le post est le votre => un click sur "Delete Post" à partir de la page d'accueil (pb javascript !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!)
+	- Si le post est le votre => un click sur "Delete Post" à partir de la page d'accueil 
 	- Sinon impossible
 	- Le post doit disparaitre de la liste des posts
 
